@@ -1,6 +1,6 @@
 ﻿namespace BrioTest.Radio.Structs
 {
-    struct Point
+    public struct Point
     {
         internal Point(double x, double y)
         {

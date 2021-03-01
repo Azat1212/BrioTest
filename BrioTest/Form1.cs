@@ -13,6 +13,8 @@ namespace BrioTest
 {
     public partial class Form1 : Form
     {
+        private Calculator _calculator = new Calculator();
+        private AdapterData _adapterData;
         public Form1()
         {
             InitializeComponent();
@@ -30,11 +32,6 @@ namespace BrioTest
 
         }
 
-        private void LabelMagic_Click(object sender, EventArgs e)
-        {
-            this.LabelMagic.Text = Utilities.GetMagic().ToString();
-        }
-
         public void OpenButton_Click(object sender, EventArgs e)
         {
             //if (openFileDialog.ShowDialog() == DialogResult.Cancel)
@@ -44,11 +41,20 @@ namespace BrioTest
             string filename = "C:\\Users\\Azat\\Documents\\GitHub\\BrioTest\\input.txt";
             // читаем файл в строку
             string fileText = System.IO.File.ReadAllText(filename);
-            Calculate.Parse(fileText);
 
             //textBox1.Text = fileText;
             //Вызов логики
-            MessageBox.Show("Файл открыт");
+            //MessageBox.Show("Файл открыт");
+
+            var data = _adapterData.Parse(fileText);
+            
+            _calculator.Callulate(data.receivers, data.signalTimes);
+
+            _calculator.Transmitter.Points;
+
+
+            //this.receiver1.Location()
+
 
         }
 

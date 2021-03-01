@@ -14,7 +14,8 @@ namespace BrioTest.Radio
             SignalTimes = new List<SignalTime>();
             Points = new List<Point>();
         }
-        internal List<SignalTime> SignalTimes;
+
+        internal List<SignalTime> SignalTimes { get; set; }
         internal List<Point> Points;
 
     }

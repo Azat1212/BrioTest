@@ -31,22 +31,14 @@ namespace BrioTest
         /// </summary>
         private void InitializeComponent()
         {
-            this.LabelMagic = new System.Windows.Forms.Label();
             this.OpenButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.receiver1 = new BrioTest.Receiver();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // LabelMagic
-            // 
-            this.LabelMagic.AutoSize = true;
-            this.LabelMagic.Location = new System.Drawing.Point(28, 23);
-            this.LabelMagic.Name = "LabelMagic";
-            this.LabelMagic.Size = new System.Drawing.Size(53, 13);
-            this.LabelMagic.TabIndex = 0;
-            this.LabelMagic.Text = "GetMagic";
-            this.LabelMagic.Click += new System.EventHandler(this.LabelMagic_Click);
             // 
             // OpenButton
             // 
@@ -77,29 +69,46 @@ namespace BrioTest
             // 
             this.saveFileDialog.DefaultExt = "txt";
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.receiver1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(800, 409);
+            this.panel1.TabIndex = 3;
+            // 
+            // receiver1
+            // 
+            this.receiver1.BackColor = System.Drawing.SystemColors.Info;
+            this.receiver1.Location = new System.Drawing.Point(13, 13);
+            this.receiver1.Name = "receiver1";
+            this.receiver1.Size = new System.Drawing.Size(23, 22);
+            this.receiver1.TabIndex = 0;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.OpenButton);
-            this.Controls.Add(this.LabelMagic);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label LabelMagic;
         private System.Windows.Forms.Button OpenButton;
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.Panel panel1;
+        private Receiver receiver1;
     }
 }
 
