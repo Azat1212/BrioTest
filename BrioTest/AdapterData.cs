@@ -35,15 +35,41 @@ namespace BrioTest
             return (receivers, signalTimes);
         }
 
-        public void SaveData(Receivers receivers, List<SignalTime> signalTimes)
+        public void SaveData(Receivers receivers, List<SignalTime> signalTimes, string fileName)
         {
+            StringBuilder data = new StringBuilder();
+                data.AppendFormat(
+                    $"{receivers.A.location.X.ToString()},{receivers.A.location.Y.ToString()}," +
+                    $"{receivers.B.location.X.ToString()},{receivers.B.location.Y.ToString()}," +
+                    $"{receivers.C.location.X.ToString()},{receivers.C.location.Y.ToString()}" + Environment.NewLine);
 
+            foreach (var signalTime in signalTimes)
+            {
+                data.AppendFormat(
+                    $"{signalTime.TimeToFirstResiever.ToString()}," +
+                    $"{signalTime.TimeToSecondResiever.ToString()}," +
+                    $"{signalTime.TimeToThirdResiever.ToString()}" + Environment.NewLine);
+            }
 
+            SaveFile(data.ToString(), fileName);
         }
-        public void SaveData(List<Point> points)
+        public void SaveData(List<Point> points, string fileName)
         {
+            StringBuilder data = new StringBuilder();
+            
+            foreach (var point in points)
+            {
+                data.AppendFormat(
+                    $"{point.X.ToString()}," +
+                    $"{point.Y.ToString()}," + Environment.NewLine);
+            }
+            SaveFile(data.ToString(), fileName);
+        }
+        
 
-
+        private void SaveFile(string data, string fileName)
+        {
+            System.IO.File.WriteAllText(fileName, data);
         }
     }
 }

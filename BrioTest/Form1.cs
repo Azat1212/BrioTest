@@ -49,10 +49,7 @@ namespace BrioTest
             var data = _adapterData.Parse(fileText);
             
             _calculator.Callulate(data.receivers, data.signalTimes);
-
-            _calculator.Transmitter.Points;
-
-
+            
             //this.receiver1.Location()
 
 

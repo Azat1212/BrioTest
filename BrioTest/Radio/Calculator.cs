@@ -32,7 +32,19 @@ namespace BrioTest.Radio
 
         public void AddTransmitterPoint(Point point)
         {
+            _transmitter.Points.Add(point);
 
+            var time1 = CalculateTime(point, _receivers.A.location);
+            var time2 = CalculateTime(point, _receivers.B.location);
+            var time3 = CalculateTime(point, _receivers.C.location);
+
+            _transmitter.SignalTimes.Add(new SignalTime(time1,time2,time3));
+        }
+
+        private double CalculateTime(Point point1, Point point2)
+        {
+            var distance = Math.Sqrt(Math.Pow(point2.X - point1.X, 2) + Math.Pow(point2.Y - point1.Y, 2));
+            return distance/(1000*1000);
         }
 
         public List<Point> GetTransmitterPoints()
