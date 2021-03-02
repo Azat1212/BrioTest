@@ -11,7 +11,7 @@ namespace BrioTest.Radio
         private Transmitter _transmitter = new Transmitter();
         private double epsilon = 0.1;
 
-        public void Callulate(Receivers receivers, List<SignalTime> signalsTime)
+        public void Calculate(Receivers receivers, List<SignalTime> signalsTime)
         {
             _receivers = receivers;
             _transmitter.SignalTimes = signalsTime;
@@ -24,10 +24,10 @@ namespace BrioTest.Radio
                     TimeToDistance(signalTime.TimeToThirdResiever));
             }
 
-            foreach (var Point in _transmitter.Points)
-            {
-                Console.WriteLine(Point.X + "    " + Point.Y);
-            }
+            //foreach (var Point in _transmitter.Points)
+            //{
+            //    Console.WriteLine(Point.X + "    " + Point.Y);
+            //}
         }
 
         public void AddTransmitterPoint(Point point)
@@ -50,6 +50,20 @@ namespace BrioTest.Radio
         public List<Point> GetTransmitterPoints()
         {
             return _transmitter.Points;
+        }
+        public List<Point> GetReceiverPoints()
+        {
+            return new List<Point>()
+            {
+                _receivers.A.location,
+                _receivers.B.location,
+                _receivers.C.location
+            };
+        }
+
+        public (Receivers receivers, List<SignalTime> signalTimes) GetData()
+        {
+            return (_receivers, _transmitter.SignalTimes);
         }
 
         private bool HasThreeCircleIntersection(double r0, double r1, double r2)
@@ -112,11 +126,11 @@ namespace BrioTest.Radio
 
             if (Math.Abs(d1 - r2) < epsilon * r2)
             {
-                _transmitter.Points.Add(new Point(intersectionPoint1.X, intersectionPoint1.Y));
+                _transmitter.Points.Add(new Point(Math.Round(intersectionPoint1.X, 8), Math.Round(intersectionPoint1.Y, 8)));
             }
             else if (Math.Abs(d2 - r2) < epsilon * r2)
             {
-                _transmitter.Points.Add(new Point(intersectionPoint2.X, intersectionPoint2.Y));
+                _transmitter.Points.Add(new Point(Math.Round(intersectionPoint2.X, 8), Math.Round(intersectionPoint2.Y, 8)));
             }
             else
             {

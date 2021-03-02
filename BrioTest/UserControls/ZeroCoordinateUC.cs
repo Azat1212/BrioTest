@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BrioTest
+namespace BrioTest.UserControls
 {
-    public partial class Receiver : UserControl
+    public partial class ZeroCoordinateUC : UserControl
     {
-        public Receiver()
+        public ZeroCoordinateUC()
         {
             InitializeComponent();
         }

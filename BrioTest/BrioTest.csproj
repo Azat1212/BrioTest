@@ -60,13 +60,24 @@
     <Compile Include="Radio\Receiver.cs" />
     <Compile Include="Radio\Structs\SignalTime.cs" />
     <Compile Include="Radio\Transmitter.cs" />
-    <Compile Include="Receiver.cs">
+    <Compile Include="UserControls\ReceiverUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Receiver.Designer.cs">
-      <DependentUpon>Receiver.cs</DependentUpon>
+    <Compile Include="UserControls\ReceiverUC.Designer.cs">
+      <DependentUpon>ReceiverUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utilities.cs" />
+    <Compile Include="UserControls\TransmitterUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\TransmitterUC.Designer.cs">
+      <DependentUpon>TransmitterUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ZeroCoordinateUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ZeroCoordinateUC.Designer.cs">
+      <DependentUpon>ZeroCoordinateUC.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -79,8 +90,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Receiver.resx">
-      <DependentUpon>Receiver.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\ReceiverUC.resx">
+      <DependentUpon>ReceiverUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ZeroCoordinateUC.resx">
+      <DependentUpon>ZeroCoordinateUC.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

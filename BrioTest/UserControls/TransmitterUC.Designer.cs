@@ -1,7 +1,6 @@
-﻿
-namespace BrioTest
+﻿namespace BrioTest.UserControls
 {
-    partial class Receiver
+    partial class TransmitterUC
     {
         /// <summary> 
         /// Required designer variable.
@@ -31,13 +30,13 @@ namespace BrioTest
         {
             this.SuspendLayout();
             // 
-            // Receiver
+            // Transmitter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Info;
-            this.Name = "Receiver";
-            this.Size = new System.Drawing.Size(10, 10);
+            this.BackColor = System.Drawing.Color.Black;
+            this.Name = "Transmitter";
+            this.Size = new System.Drawing.Size(8, 8);
             this.ResumeLayout(false);
 
         }

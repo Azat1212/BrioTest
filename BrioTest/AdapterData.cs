@@ -34,7 +34,7 @@ namespace BrioTest
             }
             return (receivers, signalTimes);
         }
-
+        
         public void SaveData(Receivers receivers, List<SignalTime> signalTimes, string fileName)
         {
             StringBuilder data = new StringBuilder();
@@ -46,9 +46,9 @@ namespace BrioTest
             foreach (var signalTime in signalTimes)
             {
                 data.AppendFormat(
-                    $"{signalTime.TimeToFirstResiever.ToString()}," +
-                    $"{signalTime.TimeToSecondResiever.ToString()}," +
-                    $"{signalTime.TimeToThirdResiever.ToString()}" + Environment.NewLine);
+                    $"{((decimal)signalTime.TimeToFirstResiever).ToString()}," +
+                    $"{((decimal)signalTime.TimeToSecondResiever).ToString()}," +
+                    $"{((decimal)signalTime.TimeToThirdResiever).ToString()}" + Environment.NewLine);
             }
 
             SaveFile(data.ToString(), fileName);
