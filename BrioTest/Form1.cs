@@ -18,6 +18,12 @@ namespace BrioTest
             
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            var zero = new ZeroCoordinateUC();
+
+            panel1.Controls.Add(zero);
+
+            zero.Location = new Point(transformCoordX(0), transformCoordY(0));
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -77,8 +83,8 @@ namespace BrioTest
                 panel1.Controls.Add(receiverUc);
 
                 receiverUc.Location = new Point(
-                    transformCoord(receiverPoint.X),
-                    transformCoord(receiverPoint.Y));
+                    transformCoordX(receiverPoint.X),
+                    transformCoordY(receiverPoint.Y));
             }
 
             var transmitterPoints = _calculator.GetTransmitterPoints();
@@ -88,14 +94,22 @@ namespace BrioTest
                 panel1.Controls.Add(transmitterUc);
 
                 transmitterUc.Location = new Point(
-                    transformCoord(transmitterPoint.X),
-                    transformCoord(transmitterPoint.Y));
+                    transformCoordX(transmitterPoint.X),
+                    transformCoordY(transmitterPoint.Y));
             }
+            var zero = new ZeroCoordinateUC();
+
+            panel1.Controls.Add(zero);
+
+            zero.Location = new Point(transformCoordX(0), transformCoordY(0));
         }
 
-        public int transformCoord(double coord)
+        public int transformCoordX(double coord)
         {
             return (int) (Math.Round(coord, 1) * 10) + 200;
+        }public int transformCoordY(double coord)
+        {
+            return (int) (Math.Round(coord, 1) * -10) + 200;
         }
 
         private void AddNewTransmitterPoint_Click(object sender, EventArgs e)
