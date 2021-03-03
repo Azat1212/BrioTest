@@ -10,6 +10,11 @@ namespace BrioTest
 {
     class AdapterData
     {
+        /// <summary>
+        /// разбивает данные по формату входящего файла
+        /// </summary>
+        /// <param name="input">Все строки которые были в файле</param>
+        /// <returns>Возвращает Receivers и список тремени сигналов</returns>
         public (Receivers receivers, List<SignalTime> signalTimes) Parse(string input)
         {
             Receivers receivers;
@@ -34,7 +39,10 @@ namespace BrioTest
             }
             return (receivers, signalTimes);
         }
-        
+
+        /// <summary>
+        /// Сохраняет координаты приемника и время прохождения сигнала в формате входного файла
+        /// </summary>
         public void SaveData(Receivers receivers, List<SignalTime> signalTimes, string fileName)
         {
             StringBuilder data = new StringBuilder();
@@ -53,6 +61,10 @@ namespace BrioTest
 
             SaveFile(data.ToString(), fileName);
         }
+
+        /// <summary>
+        /// Сохраняет траекторию передатчика в формате выходного файла
+        /// </summary>
         public void SaveData(List<Point> points, string fileName)
         {
             StringBuilder data = new StringBuilder();
@@ -65,8 +77,10 @@ namespace BrioTest
             }
             SaveFile(data.ToString(), fileName);
         }
-        
 
+        /// <summary>
+        /// Сохраняет файл
+        /// </summary>
         private void SaveFile(string data, string fileName)
         {
             System.IO.File.WriteAllText(fileName, data);

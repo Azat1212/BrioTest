@@ -20,8 +20,7 @@ namespace BrioTest
             saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
             var zero = new ZeroCoordinateUC();
-
-
+            
             panel1.Controls.Add(zero);
 
             zero.Location = new Point(transformCoord(0), transformCoord(0));
@@ -98,8 +97,7 @@ namespace BrioTest
                     transformCoord(transmitterPoint.X),
                     transformCoord(transmitterPoint.Y));
             }
-
-
+            
             var zero = new ZeroCoordinateUC();
 
             panel1.Controls.Add(zero);

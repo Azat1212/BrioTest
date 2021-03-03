@@ -9,8 +9,13 @@ namespace BrioTest.Radio
     {
         private Receivers _receivers;
         private Transmitter _transmitter = new Transmitter();
-        private double epsilon = 0.1;
+        private const double epsilon = 0.1;
+        private const double velocity = 1000.0; // скорость прохождения сигнала
+        private const double metersPerKilometer = 1000.0; // перевод из километров в метры
 
+        /// <summary>
+        /// Расчитывает траекторию передатчика относительно заданных сигналов сигнала
+        /// </summary>
         public void Calculate(Receivers receivers, List<SignalTime> signalsTime)
         {
             _receivers = receivers;
@@ -23,13 +28,11 @@ namespace BrioTest.Radio
                     TimeToDistance(signalTime.TimeToSecondResiever),
                     TimeToDistance(signalTime.TimeToThirdResiever));
             }
-
-            //foreach (var Point in _transmitter.Points)
-            //{
-            //    Console.WriteLine(Point.X + "    " + Point.Y);
-            //}
         }
 
+        /// <summary>
+        /// Добавляет новые координаты передатчика и расчитывает сигналы для каждого приемника
+        /// </summary>
         public void AddTransmitterPoint(Point point)
         {
             _transmitter.Points.Add(point);
@@ -40,17 +43,26 @@ namespace BrioTest.Radio
 
             _transmitter.SignalTimes.Add(new SignalTime(time1,time2,time3));
         }
-
+        /// <summary>
+        /// Расчитывает время  прохождения сигнала между точками
+        /// /// </summary>
         private double CalculateTime(Point point1, Point point2)
         {
             var distance = Math.Sqrt(Math.Pow(point2.X - point1.X, 2) + Math.Pow(point2.Y - point1.Y, 2));
-            return distance/(1000*1000);
+            return distance/(velocity * metersPerKilometer);
         }
 
+        /// <summary>
+        /// Возвращает траекторию передатчика
+        /// </summary>
         public List<Point> GetTransmitterPoints()
         {
             return _transmitter.Points;
         }
+
+        /// <summary>
+        /// Возвращает координаты приемников
+        /// </summary>
         public List<Point> GetReceiverPoints()
         {
             return new List<Point>()
@@ -61,11 +73,21 @@ namespace BrioTest.Radio
             };
         }
 
+        /// <summary>
+        /// Возвращает приемники и времена прохождения сигнала для каждой точки передатчика
+        /// </summary>
         public (Receivers receivers, List<SignalTime> signalTimes) GetData()
         {
             return (_receivers, _transmitter.SignalTimes);
         }
 
+        /// <summary>
+        /// Определяет пересечение трех окружностей 
+        /// </summary>
+        /// <param name="r0">Радиус первой окружности</param>
+        /// <param name="r1">Радиус второй окружности</param>
+        /// <param name="r2">Радиус третьей окружности</param>
+        /// <returns></returns>
         private bool HasThreeCircleIntersection(double r0, double r1, double r2)
         {
             double a, dx, dy, d, h, rx, ry;
@@ -112,9 +134,7 @@ namespace BrioTest.Radio
 
             intersectionPoint2.X = point2.X - rx;
             intersectionPoint2.Y = point2.Y - ry;
-
-            //Log.d("INTERSECTION Circle1 AND Circle2:", "(" + intersectionPoint1_x + "," + intersectionPoint1_y + ")" + " AND (" + intersectionPoint2_x + "," + intersectionPoint2_y + ")");
-
+            
             //пересекается ли круг 3 в любой из указанных выше точек пересечения
             dx = intersectionPoint1.X - _receivers.C.location.X;
             dy = intersectionPoint1.Y - _receivers.C.location.Y;
@@ -135,19 +155,18 @@ namespace BrioTest.Radio
             else
             {
                 return false;
-                //throw new Exception("пересечение не найдено");
             }
             return true;
         }
 
         /// <summary>
-        /// Получаем проиденное растояние сигнала в метрах
+        /// Расчитывает растояние сигнала в метрах по заданному времени
         /// </summary>
         /// <param name="time">время прохождения сигнала</param>
         /// <returns></returns>
         private static double TimeToDistance(double time)
         {
-            return time * 1000.0 * 1000.0 * (1.0);
+            return time * velocity * metersPerKilometer;
         }
 
     }
